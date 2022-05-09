@@ -12,11 +12,13 @@ List<int> LottoNumber = [];
 
 int? makeLotto() {
   LottoNumber.clear();
-  for (int i = 0; i < 7; i++) {
+  for (int i = 0; LottoNumber.length < 6; i++) {
     var randomNumber = Random().nextInt(45) + 1;
-    LottoNumber.add(randomNumber);
+    if (!LottoNumber.contains(randomNumber)) {
+      LottoNumber.add(randomNumber);
+    }
   }
-  print(LottoNumber);
+  LottoNumber.sort();
 }
 
 class _lottoState extends State<lotto> {
@@ -27,19 +29,49 @@ class _lottoState extends State<lotto> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('로또 번호를 랜덤하게 만들 수 있는 곳'),
-            SizedBox(
+            const Text('로또 번호를 랜덤하게 만들 수 있는 곳'),
+            const SizedBox(
               height: 30,
             ),
-            Text('$LottoNumber'),
-            SizedBox(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('${LottoNumber[0]}'),
+                SizedBox(
+                  width: 10,
+                ),
+                Text('${LottoNumber[1]}'),
+                SizedBox(
+                  width: 10,
+                ),
+                Text('${LottoNumber[2]}'),
+                SizedBox(
+                  width: 10,
+                ),
+                Text('${LottoNumber[3]}'),
+                SizedBox(
+                  width: 10,
+                ),
+                Text('${LottoNumber[4]}'),
+                SizedBox(
+                  width: 10,
+                ),
+                Text('${LottoNumber[5]}'),
+                SizedBox(
+                  width: 10,
+                ),
+              ],
+            ),
+            const SizedBox(
               height: 30,
             ),
             ElevatedButton(
               onPressed: () {
-                makeLotto();
+                setState(() {
+                  makeLotto();
+                });
               },
-              child: Text('로또 번호 생성'),
+              child: const Text('로또 번호 생성'),
             ),
           ],
         ),
