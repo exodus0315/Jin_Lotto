@@ -8,9 +8,9 @@ class lotto extends StatefulWidget {
   State<lotto> createState() => _lottoState();
 }
 
-List<int> LottoNumber = [];
+List<dynamic> LottoNumber = [1, 2, 3, 4, 5, 6];
 
-int? makeLotto() {
+makeLotto() {
   LottoNumber.clear();
   for (int i = 0; LottoNumber.length < 6; i++) {
     var randomNumber = Random().nextInt(45) + 1;
@@ -21,6 +21,14 @@ int? makeLotto() {
   LottoNumber.sort();
 }
 
+class CircleNumber {
+  dynamic randomNumber;
+
+  CircleNumber(this.randomNumber) {
+    Text(randomNumber);
+  }
+}
+
 class _lottoState extends State<lotto> {
   @override
   Widget build(BuildContext context) {
@@ -29,36 +37,47 @@ class _lottoState extends State<lotto> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('로또 번호를 랜덤하게 만들 수 있는 곳'),
-            const SizedBox(
-              height: 30,
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('${LottoNumber[0]}'),
+                CircleAvatar(
+                  backgroundColor: Colors.blue,
+                  child: Text('${LottoNumber[0]}'),
+                ),
                 SizedBox(
                   width: 10,
                 ),
-                Text('${LottoNumber[1]}'),
+                CircleAvatar(
+                  backgroundColor: Colors.blue,
+                  child: Text('${LottoNumber[1]}'),
+                ),
                 SizedBox(
                   width: 10,
                 ),
-                Text('${LottoNumber[2]}'),
+                CircleAvatar(
+                  backgroundColor: Colors.blue,
+                  child: Text('${LottoNumber[2]}'),
+                ),
                 SizedBox(
                   width: 10,
                 ),
-                Text('${LottoNumber[3]}'),
+                CircleAvatar(
+                  backgroundColor: Colors.blue,
+                  child: Text('${LottoNumber[3]}'),
+                ),
                 SizedBox(
                   width: 10,
                 ),
-                Text('${LottoNumber[4]}'),
+                CircleAvatar(
+                  backgroundColor: Colors.blue,
+                  child: Text('${LottoNumber[4]}'),
+                ),
                 SizedBox(
                   width: 10,
                 ),
-                Text('${LottoNumber[5]}'),
-                SizedBox(
-                  width: 10,
+                CircleAvatar(
+                  backgroundColor: Colors.blue,
+                  child: Text('${LottoNumber[5]}'),
                 ),
               ],
             ),
