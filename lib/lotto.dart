@@ -8,12 +8,12 @@ class lotto extends StatefulWidget {
   State<lotto> createState() => _lottoState();
 }
 
-List<dynamic> LottoNumber = [1, 2, 3, 4, 5, 6];
+List<int> LottoNumber = [1, 2, 3, 4, 5, 6];
 
 makeLotto() {
   LottoNumber.clear();
   for (int i = 0; LottoNumber.length < 6; i++) {
-    var randomNumber = Random().nextInt(45) + 1;
+    int randomNumber = Random().nextInt(45) + 1;
     if (!LottoNumber.contains(randomNumber)) {
       LottoNumber.add(randomNumber);
     }
@@ -22,12 +22,23 @@ makeLotto() {
 }
 
 class CircleNumber {
-  dynamic randomNumber;
-
-  CircleNumber(this.randomNumber) {
-    Text(randomNumber);
+  Widget? colorCircle(int LottoNumber) {
+    if (LottoNumber < 10) {
+      return CircleAvatar(
+        backgroundColor: Colors.blue,
+        child: Text('$LottoNumber'),
+      );
+    } else {
+      return CircleAvatar(
+        backgroundColor: Colors.blue,
+        child: Text('$LottoNumber'),
+      );
+    }
   }
 }
+
+CircleNumber circle = CircleNumber();
+Widget? resultNumber1 = circle.colorCircle(LottoNumber[0]);
 
 class _lottoState extends State<lotto> {
   @override
@@ -40,10 +51,7 @@ class _lottoState extends State<lotto> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CircleAvatar(
-                  backgroundColor: Colors.blue,
-                  child: Text('${LottoNumber[0]}'),
-                ),
+                resultNumber1!,
                 SizedBox(
                   width: 10,
                 ),
