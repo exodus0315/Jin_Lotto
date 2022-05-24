@@ -8,6 +8,21 @@ class lotto extends StatefulWidget {
   State<lotto> createState() => _lottoState();
 }
 
+class LottoModel {
+  const LottoModel({required this.color, required this.number});
+
+  final Color color;
+  final int number;
+}
+
+List<LottoModel> testModel = const [
+  LottoModel(color: Color(0xffe67e22), number: 1),
+  LottoModel(color: Color(0xff3498db), number: 2),
+  LottoModel(color: Color(0xffe74c3c), number: 3),
+  LottoModel(color: Color(0xff95a5a6), number: 4),
+  LottoModel(color: Color(0xff2ecc71), number: 5),
+];
+
 List<int> LottoNumber = [1, 2, 3, 4, 5, 6];
 
 makeLotto() {
@@ -21,25 +36,6 @@ makeLotto() {
   LottoNumber.sort();
 }
 
-class CircleNumber {
-  Widget? colorCircle(int LottoNumber) {
-    if (LottoNumber < 10) {
-      return CircleAvatar(
-        backgroundColor: Colors.blue,
-        child: Text('$LottoNumber'),
-      );
-    } else {
-      return CircleAvatar(
-        backgroundColor: Colors.blue,
-        child: Text('$LottoNumber'),
-      );
-    }
-  }
-}
-
-CircleNumber circle = CircleNumber();
-Widget? resultNumber1 = circle.colorCircle(LottoNumber[0]);
-
 class _lottoState extends State<lotto> {
   @override
   Widget build(BuildContext context) {
@@ -50,44 +46,13 @@ class _lottoState extends State<lotto> {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                resultNumber1!,
-                SizedBox(
-                  width: 10,
+              children: List.generate(
+                testModel.length,
+                (index) => MycustomClass(
+                  myNumber: testModel[index].number,
+                  customColor: testModel[index].color,
                 ),
-                CircleAvatar(
-                  backgroundColor: Colors.blue,
-                  child: Text('${LottoNumber[1]}'),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                CircleAvatar(
-                  backgroundColor: Colors.blue,
-                  child: Text('${LottoNumber[2]}'),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                CircleAvatar(
-                  backgroundColor: Colors.blue,
-                  child: Text('${LottoNumber[3]}'),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                CircleAvatar(
-                  backgroundColor: Colors.blue,
-                  child: Text('${LottoNumber[4]}'),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                CircleAvatar(
-                  backgroundColor: Colors.blue,
-                  child: Text('${LottoNumber[5]}'),
-                ),
-              ],
+              ),
             ),
             const SizedBox(
               height: 30,
@@ -102,6 +67,26 @@ class _lottoState extends State<lotto> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class MycustomClass extends StatelessWidget {
+// const MycustomClass({ Key? key, Color? this.customColor, int? myNumber }) : super(key: key);
+  MycustomClass({Key? key, required this.customColor, required this.myNumber})
+      : super(key: key);
+
+  Color customColor;
+  int myNumber;
+
+  @override
+  Widget build(BuildContext context) {
+    return CircleAvatar(
+      backgroundColor: customColor,
+      child: Text(
+        "$myNumber",
+        style: TextStyle(color: Colors.white),
       ),
     );
   }
